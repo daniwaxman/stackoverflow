@@ -1,14 +1,7 @@
-var socketIO = require('socket.io');
-var io = null;
+initialize = function(io) {
+  //io = socketIO.listen(server);
 
-exports.io = function() {
-  return io;
-};
-
-exports.initialize = function(server) {
-  io = socketIO(server);
-
-  io.on('connection', (socket) => {
+  io.sockets.on('connection', (socket) => {
     console.log('user connected')
 
     socket.emit('userName');
@@ -22,4 +15,9 @@ exports.initialize = function(server) {
     });
 
   });
+  //console.log (io);
+};
+
+module.exports = {
+  initialize,
 };
